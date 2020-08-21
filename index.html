@@ -19,6 +19,9 @@ function token() {
 }
 
 function token2() {
+	var code = location.search.substr(location.search.indexOf("?") + 1);
+	code.replace("code=", "");
+	
 	$.ajax({
 		url : "https://api.instagram.com/oauth/access_token",
 		data : {
@@ -26,7 +29,7 @@ function token2() {
 			client_secret : "e53e74b68afc111f76e6c5da85dd9d2b",
 			grant_type: "authorization_code",
 			redirect_uri : "https://hanchaeri.github.io/chaeri.github.io/index.html",
-			code : "AQDSHDwFob6Zy2cY2b0YwmhrvhY9FIcd9n2ShC1jsA6sRippmI-Zg8tz0DVM3nV1pv7tHshgYpQlULNjjfr8mJ2kigHO2uX3g840n3WN4SoGPPdbbh45qpz6O0WZuaU6zm0v37k1h3DkfHv4HdOGx5X6jUwAL9WrmCC0TWonJlxgYKinrJjupRJLcg1Mb8ktYQOGZEHcju9XD2Me2w4f29iutXN5AllYxx3aqNYzVSVN3g"
+			code : code
 		},
 		dataType:"json",
 		type: "POST",
