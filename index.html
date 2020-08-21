@@ -41,7 +41,6 @@ function a() {
 	});
 }
 
-
 function instagramData () {
 	$.ajax({
 		url : "https://graph.instagram.com/me/media?access_token=" + access_token +
@@ -50,6 +49,7 @@ function instagramData () {
 		type: "GET",
 		success : function(response) {
 			$("#div_insta").html(response.data[1].permalink);
+			$("#img_insta").html(response.data[1].media_url);
 		}
 	});
 }
@@ -60,6 +60,7 @@ function instagramData () {
 <a id="" href="javascript:a()">게시물</a>
 <div class="instagram" >
 	<div id="div_insta"></div>
+	<p><img src="" id="img_insta"/></p>
 </div>
 </body>
 </html>
