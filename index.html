@@ -40,7 +40,6 @@ function a() {
 		}
 	});
 }
-
 function instagramData () {
 	$.ajax({
 		url : "https://graph.instagram.com/me/media?access_token=" + access_token +
@@ -59,8 +58,8 @@ function instagramData () {
 <a id="" href="javascript:token()">token</a>
 <a id="" href="javascript:a()">게시물</a>
 <div class="instagram" >
-	<iframe width="300px" height="500px" src="" id="div_insta"></iframe>
-	<p><img src="" id="img_insta"/></p>
+	<iframe width="300px" height="500px" src="" id="div_insta"frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+	<p><img width="100px" height="100px" src="" id="img_insta"/></p>
 </div>
 </body>
 </html>
