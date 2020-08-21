@@ -40,6 +40,7 @@ function a() {
 		}
 	});
 }
+
 function instagramData () {
 	$.ajax({
 		url : "https://graph.instagram.com/me/media?access_token=" + access_token +
@@ -47,9 +48,10 @@ function instagramData () {
 		dataType:"json",
 		type: "GET",
 		success : function(response) {
-			var div_insta_url = response.data[1].permalink + "embed"
-			$("#div_insta").attr("src", div_insta_url);
-			$("#img_insta").attr("src", response.data[1].media_url);
+			for(int i=0; i<response.size(); i++) {
+				$(".instagram").append("<iframe width='300px' height='500px' src='' id='div_insta'></iframe>")
+				$("#div_insta").attr("src", response.data[i].permalink + "embed");
+			}
 		}
 	});
 }
@@ -59,7 +61,7 @@ function instagramData () {
 <a id="" href="javascript:token()">token</a>
 <a id="" href="javascript:a()">게시물</a>
 <div class="instagram" >
-	<iframe width="300px" height="500px" src="" id="div_insta"></iframe>
-	<p><img width="100px" height="100px" src="" id="img_insta"/></p>
+	
 </div>
 </body>
+</html>
