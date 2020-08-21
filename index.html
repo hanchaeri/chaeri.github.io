@@ -10,19 +10,37 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+var redirect_uri = "https://hanchaeri.github.io/chaeri.github.io/index.html";
+var access_token = "";
 function token() {
 	var client_id = "730887767762935";
-	var redirect_uri = "https://hanchaeri.github.io/chaeri.github.io/index.html";
 	var url = "https://www.instagram.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_profile,user_media&response_type=code";
 	
 	location.href = url;
 }
 
-function a() {
-	
-	var token = "IGQVJXYUdJQVF5S1kzd2ZAZAUVBUNWZAzQW5XQ0NvWndsdWdCdllPVUJERnRJdDJpSm5McjFyeXVkMmlmV3g2WHBmQlpCSnVqbFFMNHRPVUNJdU4yTEQ4LTlZAS0NLcXdSajk2SWRnN0puRlpuQXlkYWlPQgZDZD";
+function token2() {
 	$.ajax({
-		url : "https://graph.instagram.com/me/media?access_token=" + token +
+		url : "https://api.instagram.com/oauth/access_token",
+		data : {
+			client_id : "730887767762935",
+			client_secret : "e53e74b68afc111f76e6c5da85dd9d2b",
+			grant_type: "authorization_code",
+			redirect_uri : "https://hanchaeri.github.io/chaeri.github.io/index.html",
+			code : "AQDSHDwFob6Zy2cY2b0YwmhrvhY9FIcd9n2ShC1jsA6sRippmI-Zg8tz0DVM3nV1pv7tHshgYpQlULNjjfr8mJ2kigHO2uX3g840n3WN4SoGPPdbbh45qpz6O0WZuaU6zm0v37k1h3DkfHv4HdOGx5X6jUwAL9WrmCC0TWonJlxgYKinrJjupRJLcg1Mb8ktYQOGZEHcju9XD2Me2w4f29iutXN5AllYxx3aqNYzVSVN3g"
+		},
+		dataType:"json",
+		type: "POST",
+		success : function(response) {
+			access_token = response.access_token;
+		}
+	});
+}
+
+
+function a() {
+	$.ajax({
+		url : "https://graph.instagram.com/me/media?access_token=" + access_token +
 			  "&fields=id,caption,media_type,media_url,thumbnail_url,permalink",
 		dataType:"json",
 		type: "GET",
@@ -31,9 +49,11 @@ function a() {
 		}
 	});
 }
-	
+
+
 </script>
 <a id="" href="javascript:token()">token</a>
+<a id="" href="javascript:token2()">token2</a>
 <a id="" href="javascript:a()">게시물</a>
 </body>
 </html>
