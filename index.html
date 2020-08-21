@@ -48,8 +48,8 @@ function instagramData () {
 		dataType:"json",
 		type: "GET",
 		success : function(response) {
-			$("#div_insta").html(response.data[1].permalink);
-			$("#img_insta").html(response.data[1].media_url);
+			$("#div_insta").attr("src", response.data[1].permalink);
+			$("#img_insta").attr("src", response.data[1].media_url);
 		}
 	});
 }
@@ -59,7 +59,7 @@ function instagramData () {
 <a id="" href="javascript:token()">token</a>
 <a id="" href="javascript:a()">게시물</a>
 <div class="instagram" >
-	<div id="div_insta"></div>
+	<iframe width="300px" height="500px" src="" id="div_insta"></iframe>
 	<p><img src="" id="img_insta"/></p>
 </div>
 </body>
