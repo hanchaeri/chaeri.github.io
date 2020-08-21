@@ -1,7 +1,46 @@
+<%@page import="test.test_youtube"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+function token() {
+	var client_id = "730887767762935";
+	var redirect_uri = "https://devadmin.ssgdfm.com/nimda/nigol/loginForm";
+	$.ajax({
+		url : "https://instagram.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri +
+			  "&scope=user_profile,user_media&response_type=code",
+		dataType:"json",
+		type: "GET",
+		success : function(response) {
+			console.log(response);
+		}
+	});
+}
+
+function a() {
+	var token = "IGQVJXYUdJQVF5S1kzd2ZAZAUVBUNWZAzQW5XQ0NvWndsdWdCdllPVUJERnRJdDJpSm5McjFyeXVkMmlmV3g2WHBmQlpCSnVqbFFMNHRPVUNJdU4yTEQ4LTlZAS0NLcXdSajk2SWRnN0puRlpuQXlkYWlPQgZDZD";
+	$.ajax({
+		url : "https://graph.instagram.com/me/media?access_token=" + token +
+			  "&fields=id,caption,media_type,media_url,thumbnail_url,permalink",
+		dataType:"json",
+		type: "GET",
+		success : function(response) {
+			console.log(response);
+		}
+	});
+}
+	
+</script>
+<a id="" href="javascript:token()">token</a>
+<a id="" href="javascript:a()">게시물</a>
 </body>
 </html>
