@@ -25,7 +25,7 @@ function token2() {
 
 function a() {
 	var code = location.search.substr(location.search.indexOf("?") + 1);
-	code.replace("code=", "");
+	code = code.replace("code=", "");
 	
 	$.ajax({
 		url : "https://api.instagram.com/oauth/access_token",
