@@ -42,6 +42,7 @@ function a() {
 }
 
 
+
 function instagramData () {
 	$.ajax({
 		url : "https://graph.instagram.com/me/media?access_token=" + access_token +
@@ -50,8 +51,8 @@ function instagramData () {
 		type: "GET",
 		success : function(response) {
 			for(i=0; i<response.data.length; i++) {
-				$(".instagram").append("<iframe width='300px' height='500px' src='' id='div_insta'></iframe>")
-				$("#div_insta").attr("src", response.data[i].permalink + "embed");
+				$(".instagram").append("<iframe width='300px' height='500px' src='' id='div_insta" + i +"'></iframe>")
+				$("#div_insta"+i).attr("src", response.data[i].permalink + "embed");
 			}
 		}
 	});
