@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,18 +13,13 @@
 function token() {
 	var client_id = "730887767762935";
 	var redirect_uri = "https://hanchaeri.github.io/chaeri.github.io/index.html";
-	$.ajax({
-		url : "https://instagram.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri +
-			  "&scope=user_profile,user_media&response_type=code",
-		dataType:"json",
-		type: "GET",
-		success : function(response) {
-			console.log(response);
-		}
-	});
+	var url = "https://www.instagram.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_profile,user_media&response_type=code";
+	
+	location.href = url;
 }
 
 function a() {
+	
 	var token = "IGQVJXYUdJQVF5S1kzd2ZAZAUVBUNWZAzQW5XQ0NvWndsdWdCdllPVUJERnRJdDJpSm5McjFyeXVkMmlmV3g2WHBmQlpCSnVqbFFMNHRPVUNJdU4yTEQ4LTlZAS0NLcXdSajk2SWRnN0puRlpuQXlkYWlPQgZDZD";
 	$.ajax({
 		url : "https://graph.instagram.com/me/media?access_token=" + token +
