@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,11 @@ function token() {
 }
 
 function token2() {
+
+}
+
+
+function a() {
 	var code = location.search.substr(location.search.indexOf("?") + 1);
 	code.replace("code=", "");
 	
@@ -35,12 +41,13 @@ function token2() {
 		type: "POST",
 		success : function(response) {
 			access_token = response.access_token;
+			
+			fnInstagramData();
 		}
 	});
 }
 
-
-function a() {
+function instagramData () {
 	$.ajax({
 		url : "https://graph.instagram.com/me/media?access_token=" + access_token +
 			  "&fields=id,caption,media_type,media_url,thumbnail_url,permalink",
@@ -55,7 +62,6 @@ function a() {
 
 </script>
 <a id="" href="javascript:token()">token</a>
-<a id="" href="javascript:token2()">token2</a>
-<a id="" href="javascript:a()">게시물</a>
+<a id="" href="javascript:token2()">게시물</a>
 </body>
 </html>
