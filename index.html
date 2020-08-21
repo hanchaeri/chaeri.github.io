@@ -51,8 +51,10 @@ function instagramData () {
 		type: "GET",
 		success : function(response) {
 			for(i=0; i<response.data.length; i++) {
-				$(".instagram").append("<iframe width='300px' height='500px' src='' id='div_insta" + i +"'></iframe>")
-				$("#div_insta"+i).attr("src", response.data[i].permalink + "embed");
+				if(response.data[i].permalink.contains("https://www.instagram.com/p/CD26Cabj4Pw/")) {
+					$(".instagram").append("<iframe width='300px' height='500px' src='' id='div_insta" + i +"'></iframe>")
+					$("#div_insta"+i).attr("src", response.data[i].permalink + "embed");
+				}
 			}
 		}
 	});
