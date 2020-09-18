@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="EUC-KR"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,14 +42,14 @@ function a() {
 		success : function(response) {
 			access_token = response.access_token;
 			
-			instagramData(access_token);
+			instagramData();
 		}
 	});
 }
 
-function instagramData (data) {
+function instagramData () {
 	$.ajax({
-		url : "https://graph.instagram.com/me/media?access_token=" + data.access_token +
+		url : "https://graph.instagram.com/me/media?access_token=" + access_token +
 			  "&fields=id,caption,media_type,media_url,thumbnail_url,permalink",
 		dataType:"json",
 		type: "GET",
@@ -64,7 +64,7 @@ function instagramData (data) {
 
 
 </script>
-<a id="" href="javascript:token()">token</a>
+<a id="" href="javascript:a()">token</a>
 <div class="instagram" >
 </div>
 </body>
