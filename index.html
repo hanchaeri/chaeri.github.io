@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,30 +11,15 @@
 <script type="text/javascript">
 var redirect_uri = "https://hanchaeri.github.io/chaeri.github.io/index.html";
 var access_token = "";
-function token() {
-	var client_id = "730887767762935";
-	var url = "https://www.instagram.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_profile,user_media&response_type=code";
-	
-	location.href = url;
-}
 
 function a() {
-	var client_id = "730887767762935";
-	var url = "https://www.instagram.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_profile,user_media&response_type=code";
-	
-	location.href = url;
-	
-	var code = location.search.substr(location.search.indexOf("?") + 1);
-	code = code.replace("code=", "");
-	
 	$.ajax({
-		url : "https://api.instagram.com/oauth/access_token",
+		url : "https://graph.facebook.com/oauth/access_token",
 		data : {
 			client_id : "730887767762935",
 			client_secret : "e53e74b68afc111f76e6c5da85dd9d2b",
 			grant_type: "authorization_code",
 			redirect_uri : "https://hanchaeri.github.io/chaeri.github.io/index.html",
-			code : code
 		},
 		dataType:"json",
 		type: "POST",
