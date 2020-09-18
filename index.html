@@ -1,4 +1,4 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,29 +16,15 @@ function token() {
 	var client_id = "730887767762935";
 	var url = "https://www.instagram.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_profile,user_media&response_type=code";
 	
-	$.ajax({
-		url : "https://www.instagram.com/oauth/authorize",
-		data : {
-			client_id : "730887767762935",
-			scope : "user_profile, user_media",
-			response_type: "code",
-			redirect_uri : redirect_uri
-		},
-		type: "GET",
-		success : function(response) {
-			access_token = response.access_token;
-			
-			a(access_token);
-		}
-	});
+	location.href = url;
 }
 
-function token2() {
-
-}
-
-
-function a(token) {
+function a() {
+	var client_id = "730887767762935";
+	var url = "https://www.instagram.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_profile,user_media&response_type=code";
+	
+	location.href = url;
+	
 	var code = location.search.substr(location.search.indexOf("?") + 1);
 	code = code.replace("code=", "");
 	
@@ -56,12 +42,12 @@ function a(token) {
 		success : function(response) {
 			access_token = response.access_token;
 			
-			instagramData(access_token);
+			instagramData();
 		}
 	});
 }
 
-function instagramData (access_token) {
+function instagramData () {
 	$.ajax({
 		url : "https://graph.instagram.com/me/media?access_token=" + access_token +
 			  "&fields=id,caption,media_type,media_url,thumbnail_url,permalink",
@@ -78,8 +64,9 @@ function instagramData (access_token) {
 
 
 </script>
-<a id="" href="javascript:token()">token</a>
+<a id="" href="javascript:a()">token</a>
 <div class="instagram" >
+
 </div>
 </body>
 </html>
