@@ -10,64 +10,65 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-var redirect_uri = "https://hanchaeri.github.io/chaeri.github.io/index.html";
-var access_token = "";
-var code = location.search.substr(location.search.indexOf("?") + 1);
-code = code.replace("code=", "");
-
-$("#getBtn").click(function(){
-	if(code != "" && code != "undefined") {
-		a();
-	} else {
-		token();
+$(document).ready(function(){
+	var redirect_uri = "https://hanchaeri.github.io/chaeri.github.io/index.html";
+	var access_token = "";
+	var code = location.search.substr(location.search.indexOf("?") + 1);
+	code = code.replace("code=", "");
+	
+	$("#confirmBtn").click(function(){
+		if(code != "" && code != "undefined") {
+			a();
+		} else {
+			token();
+		}
+	});
+	
+	function token() {
+		var client_id = "730887767762935";
+		var url = "https://www.instagram.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_profile,user_media&response_type=code";
+		
+		location.href = url;
+	}
+	
+	
+	function a() {
+		$.ajax({
+			url : "https://graph.facebook.com/oauth/access_token",
+			data : {
+				client_id : "730887767762935",
+				client_secret : "e53e74b68afc111f76e6c5da85dd9d2b",
+				grant_type: "authorization_code",
+				redirect_uri : "https://hanchaeri.github.io/chaeri.github.io/index.html",
+			},
+			dataType:"json",
+			type: "POST",
+			success : function(response) {
+				access_token = response.access_token;
+				
+				instagramData();
+			}
+		});
+	}
+	
+	function instagramData () {
+		$.ajax({
+			url : "https://graph.instagram.com/me/media?access_token=" + access_token +
+				  "&fields=id,caption,media_type,media_url,thumbnail_url,permalink",
+			dataType:"json",
+			type: "GET",
+			success : function(response) {
+				for(i=0; i<response.data.length; i++) {
+					$(".instagram").append("<iframe width='300px' height='500px' src='' id='div_insta" + i +"'></iframe>")
+					$("#div_insta"+i).attr("src", response.data[i].permalink + "embed");
+				}
+			}
+		});
 	}
 });
 
-function token() {
-	var client_id = "730887767762935";
-	var url = "https://www.instagram.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_profile,user_media&response_type=code";
-	
-	location.href = url;
-}
-
-
-function a() {
-	$.ajax({
-		url : "https://graph.facebook.com/oauth/access_token",
-		data : {
-			client_id : "730887767762935",
-			client_secret : "e53e74b68afc111f76e6c5da85dd9d2b",
-			grant_type: "authorization_code",
-			redirect_uri : "https://hanchaeri.github.io/chaeri.github.io/index.html",
-		},
-		dataType:"json",
-		type: "POST",
-		success : function(response) {
-			access_token = response.access_token;
-			
-			instagramData();
-		}
-	});
-}
-
-function instagramData () {
-	$.ajax({
-		url : "https://graph.instagram.com/me/media?access_token=" + access_token +
-			  "&fields=id,caption,media_type,media_url,thumbnail_url,permalink",
-		dataType:"json",
-		type: "GET",
-		success : function(response) {
-			for(i=0; i<response.data.length; i++) {
-				$(".instagram").append("<iframe width='300px' height='500px' src='' id='div_insta" + i +"'></iframe>")
-				$("#div_insta"+i).attr("src", response.data[i].permalink + "embed");
-			}
-		}
-	});
-}
-
-
 </script>
-<button id="getBtn">게시물 가져오기</button>
+<button type="button" class="btnSSG btnM action" id="confirmBtn">게시물 가져오기</button>
 <div class="instagram" >
 
 </div>
