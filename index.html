@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,10 +12,26 @@
 <script type="text/javascript">
 var redirect_uri = "https://hanchaeri.github.io/chaeri.github.io/index.html";
 var access_token = "";
+var code = location.search.substr(location.search.indexOf("?") + 1);
+code = code.replace("code=", "");
+
+$("#getBtn").click(function(){
+	if(code != "" && code != "undefined") {
+		a();
+	} else {
+		token();
+	}
+});
+
+function token() {
+	var client_id = "730887767762935";
+	var url = "https://www.instagram.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_profile,user_media&response_type=code";
+	
+	location.href = url;
+}
+
 
 function a() {
-	var code = location.search.substr(location.search.indexOf("?") + 1);
-	code = code.replace("code=", "");
 	$.ajax({
 		url : "https://graph.facebook.com/oauth/access_token",
 		data : {
@@ -23,7 +40,8 @@ function a() {
 			grant_type: "authorization_code",
 			redirect_uri : "https://hanchaeri.github.io/chaeri.github.io/index.html",
 		},
-		type: "GET",
+		dataType:"json",
+		type: "POST",
 		success : function(response) {
 			access_token = response.access_token;
 			
@@ -49,7 +67,7 @@ function instagramData () {
 
 
 </script>
-<a id="" href="javascript:a()">token</a>
+<button id="getBtn">게시물 가져오기</button>
 <div class="instagram" >
 
 </div>
