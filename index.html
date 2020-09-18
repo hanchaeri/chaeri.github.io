@@ -13,6 +13,8 @@ var redirect_uri = "https://hanchaeri.github.io/chaeri.github.io/index.html";
 var access_token = "";
 
 function a() {
+	var code = location.search.substr(location.search.indexOf("?") + 1);
+	code = code.replace("code=", "");
 	$.ajax({
 		url : "https://graph.facebook.com/oauth/access_token",
 		data : {
