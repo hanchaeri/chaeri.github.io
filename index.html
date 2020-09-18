@@ -16,7 +16,22 @@ function token() {
 	var client_id = "730887767762935";
 	var url = "https://www.instagram.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_profile,user_media&response_type=code";
 	
-	location.href = url;
+	$.ajax({
+		url : "https://www.instagram.com/oauth/authorize?client_id=",
+		data : {
+			client_id : "730887767762935",
+			scope : "user_profile, user_media",
+			response_type: "code",
+			redirect_uri : redirect_uri
+		},
+		dataType:"json",
+		type: "POST",
+		success : function(response) {
+			access_token = response.access_token;
+			
+			instagramData(access_token);
+		}
+	});
 }
 
 function token2() {
@@ -42,7 +57,7 @@ function a() {
 		success : function(response) {
 			access_token = response.access_token;
 			
-			instagramData();
+			instagramData(access_token);
 		}
 	});
 }
