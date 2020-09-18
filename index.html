@@ -42,14 +42,14 @@ function a() {
 		success : function(response) {
 			access_token = response.access_token;
 			
-			instagramData();
+			instagramData(access_token);
 		}
 	});
 }
 
-function instagramData () {
+function instagramData (data) {
 	$.ajax({
-		url : "https://graph.instagram.com/me/media?access_token=" + access_token +
+		url : "https://graph.instagram.com/me/media?access_token=" + data.access_token +
 			  "&fields=id,caption,media_type,media_url,thumbnail_url,permalink",
 		dataType:"json",
 		type: "GET",
