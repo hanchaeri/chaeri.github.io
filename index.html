@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,11 @@ function token() {
 	
 	location.href = url;
 }
+
+function token2() {
+
+}
+
 
 function a() {
 	var code = location.search.substr(location.search.indexOf("?") + 1);
@@ -49,11 +55,8 @@ function instagramData () {
 		type: "GET",
 		success : function(response) {
 			for(i=0; i<response.data.length; i++) {
-				
-				if(response.data[i].permalink.indexOf("https://www.instagram.com/p/CD26Cabj4Pw/") != -1) {
-					$(".instagram").append("<iframe width='300px' height='500px' src='' id='div_insta" + i +"'></iframe>")
-					$("#div_insta"+i).attr("src", response.data[i].permalink + "embed");
-				}
+				$(".instagram").append("<iframe width='300px' height='500px' src='' id='div_insta" + i +"'></iframe>")
+				$("#div_insta"+i).attr("src", response.data[i].permalink + "embed");
 			}
 		}
 	});
@@ -62,9 +65,7 @@ function instagramData () {
 
 </script>
 <a id="" href="javascript:token()">token</a>
-<a id="" href="javascript:a()">게시물</a>
 <div class="instagram" >
-	<iframe src="https://www.instagram.com/p/CElMPmMBdY3/?igshid=28m189z5wocd/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
 </div>
 </body>
 </html>
