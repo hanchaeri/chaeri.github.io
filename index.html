@@ -29,7 +29,7 @@ function token() {
 		success : function(response) {
 			access_token = response.access_token;
 			
-			instagramData(access_token);
+			a(access_token);
 		}
 	});
 }
@@ -39,7 +39,7 @@ function token2() {
 }
 
 
-function a() {
+function a(token) {
 	var code = location.search.substr(location.search.indexOf("?") + 1);
 	code = code.replace("code=", "");
 	
