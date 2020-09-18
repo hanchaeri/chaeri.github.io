@@ -17,7 +17,7 @@ function token() {
 	var url = "https://www.instagram.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_profile,user_media&response_type=code";
 	
 	$.ajax({
-		url : "https://www.instagram.com/oauth/authorize?client_id=",
+		url : "https://www.instagram.com/oauth/authorize",
 		data : {
 			client_id : "730887767762935",
 			scope : "user_profile, user_media",
@@ -79,7 +79,7 @@ function instagramData () {
 
 
 </script>
-<a id="" href="javascript:token()">token</a>
+<a id="" href="javascript:a()">token</a>
 <div class="instagram" >
 </div>
 </body>
