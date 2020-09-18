@@ -34,12 +34,13 @@ $(document).ready(function(){
 	
 	function a() {
 		$.ajax({
-			url : "https://graph.facebook.com/oauth/access_token",
+			url : "https://api.instagram.com/oauth/access_token",
 			data : {
 				client_id : "730887767762935",
 				client_secret : "e53e74b68afc111f76e6c5da85dd9d2b",
 				grant_type: "authorization_code",
 				redirect_uri : "https://hanchaeri.github.io/chaeri.github.io/index.html",
+				code : code
 			},
 			dataType:"json",
 			type: "POST",
