@@ -21,8 +21,7 @@ function a() {
 			grant_type: "authorization_code",
 			redirect_uri : "https://hanchaeri.github.io/chaeri.github.io/index.html",
 		},
-		dataType:"json",
-		type: "POST",
+		type: "GET",
 		success : function(response) {
 			access_token = response.access_token;
 			
