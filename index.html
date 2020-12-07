@@ -54,7 +54,7 @@ $(document).ready(function(){
 	function instagramData () {
 		$.ajax({
 			url : "https://graph.instagram.com/me/media?access_token=" + access_token +
-				  "&fields=id,caption,media_type,media_url,thumbnail_url,permalink",
+				  "&fields=id,caption,media_type,media_url,thumbnail_url,permalink&permalink='https://www.instagram.com/p/CIc5hULngh9/'",
 			dataType:"json",
 			type: "GET",
 			success : function(response) {
